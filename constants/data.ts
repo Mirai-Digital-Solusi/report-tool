@@ -121,6 +121,22 @@ export type Product = {
   updated_at: string;
 };
 
+export type Report = {
+  id: number;
+  created_at: string;
+  created_by: string;
+  title: string;
+};
+
+export type ReportDetail = {
+  id: number;
+  created_at: string;
+  created_by: string;
+  title: string;
+  description: string;
+  image_url: string;
+};
+
 export const navItems: NavItem[] = [
   {
     title: 'Dashboard',
@@ -129,40 +145,46 @@ export const navItems: NavItem[] = [
     label: 'Dashboard'
   },
   {
-    title: 'Employee',
-    href: '/dashboard/employee',
-    icon: 'user',
-    label: 'employee'
-  },
-  {
-    title: 'Product',
-    href: '/dashboard/product',
-    icon: 'product',
-    label: 'product'
-  },
-  {
-    title: 'Account',
-    icon: 'user',
-    label: 'account',
-    children: [
-      {
-        title: 'Profile',
-        href: '/dashboard/profile',
-        icon: 'userPen',
-        label: 'profile'
-      },
-      {
-        title: 'Login',
-        href: '/',
-        icon: 'login',
-        label: 'login'
-      }
-    ]
-  },
-  {
-    title: 'Kanban',
-    href: '/dashboard/kanban',
-    icon: 'kanban',
-    label: 'kanban'
+    title: 'Reports',
+    href: '/dashboard/report',
+    icon: 'laptop',
+    label: 'report'
   }
+  // {
+  //   title: 'Employee',
+  //   href: '/dashboard/employee',
+  //   icon: 'user',
+  //   label: 'employee'
+  // },
+  // {
+  //   title: 'Products',
+  //   href: '/dashboard/product',
+  //   icon: 'product',
+  //   label: 'product'
+  // },
+  // {
+  //   title: 'Account',
+  //   icon: 'user',
+  //   label: 'account',
+  //   children: [
+  //     {
+  //       title: 'Profile',
+  //       href: '/dashboard/profile',
+  //       icon: 'userPen',
+  //       label: 'profile'
+  //     },
+  //     {
+  //       title: 'Login',
+  //       href: '/',
+  //       icon: 'login',
+  //       label: 'login'
+  //     }
+  //   ]
+  // },
+  // {
+  //   title: 'Kanban',
+  //   href: '/dashboard/kanban',
+  //   icon: 'kanban',
+  //   label: 'kanban'
+  // }
 ];

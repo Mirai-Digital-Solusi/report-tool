@@ -12,9 +12,18 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+import { createClient } from '@/utils/supabase/server';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-export default function OverViewPage() {
+export default async function OverViewPage() {
+  const supabase = createClient();
+
+  const { count } = await supabase
+    .from('reports')
+    .select('id', { count: 'exact', head: true });
+
+  const totalReports = Math.ceil(count ?? 0 / 10);
+
   return (
     <PageContainer scrollable>
       <div className="space-y-2">
@@ -22,12 +31,35 @@ export default function OverViewPage() {
           <h2 className="text-2xl font-bold tracking-tight">
             Hi, Welcome back 👋
           </h2>
-          <div className="hidden items-center space-x-2 md:flex">
+          {/* <div className="hidden items-center space-x-2 md:flex">
             <CalendarDateRangePicker />
             <Button>Download</Button>
-          </div>
+          </div> */}
         </div>
-        <Tabs defaultValue="overview" className="space-y-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Report</CardTitle>
+            {/* <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="h-4 w-4 text-muted-foreground"
+                  >
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg> */}
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{totalReports}</div>
+            {/* <p className="text-xs text-muted-foreground">
+                    +20.1% from last month
+                  </p> */}
+          </CardContent>
+        </Card>
+        {/* <Tabs defaultValue="overview" className="space-y-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="analytics" disabled>
@@ -161,7 +193,7 @@ export default function OverViewPage() {
               </div>
             </div>
           </TabsContent>
-        </Tabs>
+        </Tabs> */}
       </div>
     </PageContainer>
   );
